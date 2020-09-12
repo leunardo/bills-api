@@ -1,0 +1,50 @@
+<h1>Bills</h1>
+
+<div class="container">
+
+  <form [formGroup]="form">
+    <h3>Add new bill</h3>
+    <div>
+      <label>
+        Name
+        <input type="text" formControlName="name">
+      </label>
+      <label>
+        Amount
+        <input type="number" formControlName="originalAmount">
+      </label>
+      <label>
+        Payment Date
+        <input type="date" formControlName="paymentDate">
+      </label>
+      <label>
+        Due Date
+        <input type="date" formControlName="dueDate">
+      </label>
+    </div>
+    <button type="button" [disabled]="form.invalid" (click)="save()">Save</button>
+  </form>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Original Amount</th>
+        <th>Adjusted Amount</th>
+        <th>Overdue Days</th>
+        <th>Payment Date</th>
+        <th>Due Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let bill of bills$ | async">
+        <td title="PAYMENT {{bill.name}} | ID {{ bill.id }}">{{ bill.name }}</td>
+        <td>{{ bill.originalAmount | currency }}</td>
+        <td><b>{{ bill.adjustedAmount | currency }}</b></td>
+        <td>{{ bill.overdueDays }}</td>
+        <td>{{ bill.paymentDate | date }}</td>
+        <td>{{ bill.dueDate | date }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
