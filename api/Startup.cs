@@ -33,6 +33,16 @@ namespace api
             services.AddDbContext<DbContext>();
             services.AddScoped<IBillsService, BillsService>();
             InfrastructureInjector.Config(services);
+
+            services.AddCors(options => {
+                options.AddPolicy("cors", options =>
+                {
+                    options
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowAnyOrigin();
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +60,8 @@ namespace api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors("cors");
 
             app.UseHttpsRedirection();
 
