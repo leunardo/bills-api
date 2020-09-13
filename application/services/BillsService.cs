@@ -57,7 +57,7 @@ namespace application.services
                 if (bill.OverdueDays > 0)
                 {
                     var businessRule = businessRules.First(br => 
-                        br.DelayedDaysStart < bill.OverdueDays &&
+                        br.DelayedDaysStart <= bill.OverdueDays &&
                         br.DelayedDaysEnd > bill.OverdueDays);
 
                     bill.AdjustedAmount = bill.OriginalAmount;
