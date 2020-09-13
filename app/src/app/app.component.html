@@ -41,7 +41,7 @@
         <td title="PAYMENT {{bill.name}} | ID {{ bill.id }}">{{ bill.name }}</td>
         <td>{{ bill.originalAmount | currency }}</td>
         <td><b>{{ bill.adjustedAmount | currency }}</b></td>
-        <td>{{ bill.overdueDays }}</td>
+        <td [style.color]="bill.overdueDays === 0 ? 'lightgray' : 'inherit'">{{ bill.overdueDays }}</td>
         <td>{{ bill.paymentDate | date }}</td>
         <td>{{ bill.dueDate | date }}</td>
       </tr>
