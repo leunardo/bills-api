@@ -22,7 +22,7 @@ namespace infrastructure.repository
 
         public void Populate()
         {
-            for (int i = 0; i < 60; i++)
+            for (int i = 0; i < 10; i++)
             {
                 _db.Add(CreateBill());
             }
